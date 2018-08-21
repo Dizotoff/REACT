@@ -1,88 +1,42 @@
 'use strict';
 
-console.log("App.js is running");
+var appRoot = document.getElementById('app');
+var text = '';
+var visibility = false;
+var show = function show() {
+    visibility = true;
+    text = 'Here is some text';
 
-var app = {
-    title: 'King of joy',
-    subtitle: 'White tower',
-    options: ['One', 'Two']
+    render();
 };
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        ' ',
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options.length > 0 ? app.options : 'No options'
-    ),
-    React.createElement(
-        'ol',
+var hide = function hide() {
+    text = '';
+    visibility = false;
+    render();
+};
+
+var render = function render() {
+    var template = React.createElement(
+        'div',
         null,
         React.createElement(
-            'li',
+            'h1',
             null,
-            'Item one'
+            'Visibility Toggle'
         ),
         React.createElement(
-            'li',
+            'button',
+            { onClick: text === '' ? show : hide },
+            visibility ? 'Hide details' : 'Show details'
+        ),
+        React.createElement(
+            'p',
             null,
-            'Item Two'
+            text
         )
-    )
-);
-
-var addOne = function addOne() {
-    console.log('AddOne');
+    );
+    ReactDOM.render(template, appRoot);
 };
 
-var minusOne = function minusOne() {
-    console.log('minusOne');
-};
-
-var reset = function reset() {
-    console.log('reset');
-};
-
-var count = 0;
-var someId = 'myidhere';
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: minusOne },
-        '-1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        'reset'
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        '+1'
-    )
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(templateTwo, appRoot);
+render();
