@@ -1,12 +1,12 @@
 console.log("App.js is running");
 
-var app = {
+const app = {
     title: 'King of joy',
    subtitle: 'White tower', 
    options: ['One', 'Two']
 }
 
-var template = (
+const template = (
     <div>
         <h1>{app.title}</h1>
         {app.subtitle  && <p> {app.subtitle}</p>}
@@ -18,31 +18,31 @@ var template = (
     </div>
 );
 
-
-
-var user = {
-    name: 'Sasha',
-    age: 144,
-    location: 'Philadelphia'
-
-};
-
-function getLocation (location) {
-    if (location) {
-        return <p>Location: {location}</p>;
-    } 
+const addOne = () => {
+    console.log('AddOne');
 }
 
-//if first parameter true - use left one, if false use right one 
-//if first parameter true - use second parameter, if not use first one
-var templateTwo = (
+const minusOne = () => {
+    console.log('minusOne');
+}
+
+const reset = () => {
+    console.log('reset');
+}
+
+let count = 0;
+const someId = 'myidhere';
+const templateTwo = (
     <div>
-        <h1>{user.name ? user.name : 'Anonymous'}</h1> 
-        {user.age >= 18 && <p>Age: {user.age}</p>}
-        {getLocation(user.location)}
+        <h1>Count: {count}</h1>
+        <button onClick={minusOne}>-1</button>
+        <button onClick={reset}>reset</button>
+        <button onClick={addOne}>+1</button>
     </div>
 );
 
-var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot ); 
+
+const appRoot = document.getElementById('app');
+
+ReactDOM.render(templateTwo, appRoot ); 
