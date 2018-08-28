@@ -24,12 +24,24 @@ class Counter extends React.Component {
         });
     }
     handleReset () {
-        this.setState((prevState) => {
-            return {
+       this.setState(() => {
+            return {                                //old way
                 count : 0
             };
         });
-    }
+
+        this.setState((prevState) => {
+            return {                                //old way use when we neeed previous state
+                count : prevState.count +1
+            };
+        });
+      
+        /* this.setState({
+            count: 0                //use when we dont need acces to the previous state
+        }); */
+       
+        
+}
 
     render () {
         return (
